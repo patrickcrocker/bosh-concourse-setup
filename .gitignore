@@ -1,6 +1,6 @@
 # Terraform
-/.terraform/terraform.tfstate
-/.terraform/terraform.tfstate.backup
+/.terraform/
+/terraform/init/.terraform/
 /plan.out
 /.plan.*
 *.DS_Store
