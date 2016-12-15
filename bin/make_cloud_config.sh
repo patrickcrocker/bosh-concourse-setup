@@ -38,7 +38,7 @@ vm_types:
     security_groups: [boshdefault]
 - name: concourse_worker
   cloud_properties:
-    instance_type: m3.large
+    instance_type: m3.xlarge
     ephemeral_disk: {size: 100_000, type: gp2}
     security_groups: [boshdefault]
 - name: concourse_compile
