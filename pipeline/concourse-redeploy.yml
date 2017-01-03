@@ -1,0 +1,59 @@
+---
+resources:
+- name: concourse-config
+  type: s3
+  source:
+    bucket: {{concourse-bucket}}
+    versioned_file: {{concourse-file}}
+    region_name: {{concourse-region}}
+    access_key_id: {{concourse-aws-key}}
+    secret_access_key: {{concourse-aws-secret-key}}
+
+- name: concourse-release
+  type: github-release
+  source:
+    repository: concourse
+    user: concourse
+
+- name: concourse-deployment
+  type: bosh-deployment
+  source:
+    target: {{concourse-deployment-bosh-target}}
+    username: {{concourse-deployment-bosh-username}}
+    password: {{concourse-deployment-bosh-password}}
+    deployment: {{concourse-deployment-bosh-deployment}}
+    ignore_ssl: {{concourse-deployment-bosh-ignore-ssl}}
+
+- name: stemcell
+  type: bosh-io-stemcell
+  source:
+    name: {{stemcell}}
+
+# A stemcell update will force the workers to restart
+# and will result in a failed build.
+# However, the bosh deploy will actually succeed.
+# Attempting it a second time should result in a (successful) no-op
+
+jobs:
+- name: deploy-concourse
+  serial: true
+  plan:
+  - aggregate:
+    - get: concourse-release
+      trigger: false
+      params:
+        globs:
+        - concourse-*.tgz
+        - garden-runc-*.tgz
+    - get: concourse-config
+      trigger: true
+    - get: stemcell
+      trigger: false
+  - put: concourse-deployment
+    params:
+      manifest: {{concourse-config-manifest-location}}
+      releases:
+        - concourse-release/concourse-*.tgz
+        - concourse-release/garden-runc-*.tgz
+      stemcells:
+        - stemcell/*.tgz
