@@ -17,3 +17,6 @@ cd ../
 
 # Generate concourse manifest
 ./bin/make_manifest_concourse.sh
+
+# Set deployment in bosh to be concourse
+bosh deployment concourse.yml
