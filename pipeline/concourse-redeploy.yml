@@ -27,7 +27,7 @@ resources:
 - name: stemcell
   type: bosh-io-stemcell
   source:
-    name: {{stemcell}}
+    name: {{concourse-stemcell-name}}
 
 # A stemcell update will force the workers to restart
 # and will result in a failed build.
@@ -46,7 +46,7 @@ jobs:
         - concourse-*.tgz
         - garden-runc-*.tgz
     - get: concourse-config
-      trigger: true
+      trigger: false
     - get: stemcell
       trigger: false
   - put: concourse-deployment
