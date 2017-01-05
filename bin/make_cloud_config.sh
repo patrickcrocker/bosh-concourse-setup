@@ -5,7 +5,7 @@
 
 
 function getvars() {
-  cd terraform/
+  cd .terraform/
   DEFAULT_SUBNET=$(terraform output default_subnet_id)
   OPS_SUBNET=$(terraform output ops_services_subnet_id)
   cd ../

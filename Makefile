@@ -1,4 +1,4 @@
-.PHONY: infra plan apply tf-apply clean mrproper help
+.PHONY: infra plan apply tf-apply setup setup-local clean mrproper help
 .DEFAULT_GOAL := help
 
 AWS_PROFILE ?= Default
@@ -22,6 +22,11 @@ tf-apply:
 
 show: ## Print what the current plan of operations would do, without replanning
 	terraform show $(PLAN)
+
+setup: $(STATE) setup-local ## Build local environment for the dachs concourse.  Requires AWS_PROFILE=<credentials group>
+setup-local:
+	aws s3 cp --region eu-west-1 s3://dachs-setup-variables/state_vars.yml vars/state_vars.yml
+	yml2env vars/state_vars.yml ./bin/local_setup/set_up_local.sh
 
 clean: ## Archive the last plan
 	mv $(PLAN) .$(PLAN).$(NOW)

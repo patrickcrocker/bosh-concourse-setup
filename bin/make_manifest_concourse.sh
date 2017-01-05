@@ -42,9 +42,7 @@ instance_groups:
   - name: atc
     release: concourse
     properties:
-      # replace with your CI's externally reachable URL e.g https://blah
       external_url: $CONCOURSE_URL
-      # configure GitHub auth
       github_auth:
         authorize:
         - organization: $GITHUB_ORG
@@ -61,7 +59,6 @@ instance_groups:
   instances: 1
   vm_type: concourse_db
   stemcell: trusty
-  # choose a disk type from the cloud-config
   persistent_disk_type: $DISK_TYPE
   azs: [z1]
   networks: [{name: ops_services}]

@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+
+set timeout 20
+
+spawn bosh target $::env(EIP)
+
+expect "Your username:" { send "admin\r" }
+expect "Enter password:" { send "$::env(BOSH_PASSWORD)\r" }
+
+interact

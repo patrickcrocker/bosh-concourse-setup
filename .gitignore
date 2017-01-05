@@ -16,3 +16,4 @@ concourse.yml
 aws-cloud.yml
 
 /pipeline/vars/*
+/vars/state_vars.yml
