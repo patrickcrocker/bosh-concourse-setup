@@ -20,11 +20,9 @@ Requirements
 Table of Contents
 -----
 
-1. [Initial setup](/docs/setup.md)
-  * Setting up terraform
-  * Generating the manifests
-  * Using bosh-init to deploy the director
-  * Configuring and deploying Concourse with bosh
+1. [Setting up local files](/docs/local_setup.md)
+  * Generating the manifests needed for managing the ci.dachs.dog concourse
+  * Targeting the concourse
 - [Ops tools](/docs/ops.md)
   * Using bosh ssh to access bosh-managed vms
   * Using ssh to access EC2 instances
