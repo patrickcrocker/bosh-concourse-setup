@@ -1,10 +1,7 @@
 Initial Setup - Terraform, Bosh, and Concourse
 ==============================================
 
-# Note this doc is for setting up a new concourse deployment.  The rest of this
-# branch (master) has been designed around managing the deployment that is
-# already running.  Some of the instructions in this doc may not work on this
-# branch.  The doc remains here for informational purposes.
+# Note this doc is for setting up a new concourse deployment.  The rest of this branch (master) has been designed around managing the deployment that is already running.  Some of the instructions in this doc may not work on this branch.  The doc remains here for informational purposes.
 
 Ensure you have modified `terraform/terraform.tfvars` file with your variables, or set suitable [environment variables](https://www.terraform.io/docs/configuration/variables.html).
 
