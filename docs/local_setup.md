@@ -5,6 +5,7 @@ Note that these steps assume the concourse is already deployed
 ## Prerequisites
 - Install the [yml2env tool](https://github.com/EngineerBetter/yml2env)
 - Install [terraform](https://www.terraform.io/intro/getting-started/install.html)
+- Install the aws CLI tool
 - Have AWS creds for the account the concourse is running in
 
 ## Setting up the local environment
