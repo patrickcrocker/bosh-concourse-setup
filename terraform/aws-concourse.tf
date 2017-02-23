@@ -96,6 +96,14 @@ resource "aws_elb" "concourse" {
     lb_protocol = "tcp"
   }
 
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    target = "TCP:2222"
+    interval = 15
+    timeout = 5
+  }
+
   tags {
   component = "concourse"
   }
