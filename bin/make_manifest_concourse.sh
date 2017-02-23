@@ -32,9 +32,9 @@ stemcells:
   version: latest
 
 instance_groups:
-- name: concourse
-  instances: 1
-  vm_type: concourse_standalone
+- name: web
+  instances: 2
+  vm_type: concourse_web
   stemcell: trusty
   azs: [z1]
   networks: [{name: ops_services}]
@@ -73,7 +73,7 @@ instance_groups:
         password: $DB_PASSWORD
 
 - name: worker
-  instances: 2
+  instances: 3
   vm_type: concourse_worker
   stemcell: trusty
   azs: [z1]
@@ -96,7 +96,7 @@ instance_groups:
 
 update:
   canaries: 1
-  max_in_flight: 1
-  serial: false
+  max_in_flight: 2
+  serial: true
   canary_watch_time: 1000-60000
   update_watch_time: 1000-60000

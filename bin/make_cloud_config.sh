@@ -25,9 +25,9 @@ azs:
   cloud_properties: {availability_zone: $AWS_AZ}
 
 vm_types:
-- name: concourse_standalone
+- name: concourse_web
   cloud_properties:
-    instance_type: m3.large
+    instance_type: t2.small
     ephemeral_disk: {size: 5_000, type: gp2}
     elbs: [concourse-elb]
     security_groups: [concourse-sg, boshdefault]
@@ -35,16 +35,16 @@ vm_types:
   cloud_properties:
     instance_type: m3.medium
     ephemeral_disk: {size: 3_000, type: gp2}
-    security_groups: [boshdefault]
+    security_groups: [concourse-sg, boshdefault]
 - name: concourse_worker
   cloud_properties:
-    instance_type: m3.xlarge
+    instance_type: m4.large
     ephemeral_disk: {size: 100_000, type: gp2}
-    security_groups: [boshdefault]
+    security_groups: [concourse-sg, boshdefault]
 - name: concourse_compile
   cloud_properties:
-    instance_type: m3.xlarge
-    ephemeral_disk: {size: 5000, type: gp2}
+    instance_type: m4.xlarge
+    ephemeral_disk: {size: 10_000, type: gp2}
     security_groups: [boshdefault]
 
 disk_types:
