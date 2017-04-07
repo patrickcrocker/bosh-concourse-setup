@@ -14,14 +14,14 @@ infra: plan apply ## Do whatever's needed to bring the infra up to date
 
 plan: $(PLAN) ## Plan, display and store that which would be needed to bring the infra up to date
 $(PLAN): $(STATE) $(TF_FILES)
-	terraform plan -out $(PLAN) -var-file=$(TF_VARS) $(RESOURCES)/
+	terraform plan -out "$(PLAN)" -var-file="$(TF_VARS)" "$(RESOURCES)/"
 
 apply: $(STATE) tf-apply clean ## Apply the current plan of operations to the infra, without replanning
 tf-apply:
-	terraform apply $(PLAN)
+	terraform apply "$(PLAN)"
 
 show: ## Print what the current plan of operations would do, without replanning
-	terraform show $(PLAN)
+	terraform show "$(PLAN)"
 
 setup: $(STATE) setup-local ## Build local environment for the dachs concourse.  Requires AWS_PROFILE=<credentials group>
 setup-local:
