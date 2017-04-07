@@ -1,5 +1,11 @@
 ---
 resources:
+- name: concourse-release
+  type: github-release
+  source:
+    repository: concourse
+    user: concourse
+
 - name: concourse-config
   type: s3
   source:
@@ -9,12 +15,6 @@ resources:
     access_key_id: {{concourse-aws-key}}
     secret_access_key: {{concourse-aws-secret-key}}
 
-- name: concourse-release
-  type: github-release
-  source:
-    repository: concourse
-    user: concourse
-
 - name: concourse-deployment
   type: bosh-deployment
   source:
@@ -23,6 +23,12 @@ resources:
     password: {{concourse-deployment-bosh-password}}
     deployment: {{concourse-deployment-bosh-deployment}}
     ignore_ssl: {{concourse-deployment-bosh-ignore-ssl}}
+
+- name: garden-runc
+  type: github-release
+  source:
+    repository: cloudfoundry
+    user: garden-runc-release
 
 - name: stemcell
   type: bosh-io-stemcell
@@ -44,16 +50,20 @@ jobs:
       params:
         globs:
         - concourse-*.tgz
-        - garden-runc-*.tgz
     - get: concourse-config
+      trigger: true
+    - get: garden-runc
       trigger: false
+      params:
+        globs:
+        - gdn-*.tgz
     - get: stemcell
       trigger: false
   - put: concourse-deployment
     params:
       manifest: {{concourse-config-manifest-location}}
       releases:
+        - garden-runc/gdn-*.tgz
         - concourse-release/concourse-*.tgz
-        - concourse-release/garden-runc-*.tgz
       stemcells:
         - stemcell/*.tgz
