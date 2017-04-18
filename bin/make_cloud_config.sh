@@ -3,7 +3,6 @@
 #  Please set the following environment variables:
 #  $AWS_AZ
 
-
 function getvars() {
   cd .terraform/
   DEFAULT_SUBNET=$(terraform output default_subnet_id)
@@ -16,7 +15,6 @@ getvars
 echo "Default Subnet = $DEFAULT_SUBNET"
 echo "Ops Services Subnet = $OPS_SUBNET"
 echo "AWS AZ" = $AWS_AZ
-
 
 cat >aws-cloud.yml <<YAML
 ---

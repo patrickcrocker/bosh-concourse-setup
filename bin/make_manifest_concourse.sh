@@ -73,7 +73,7 @@ instance_groups:
         password: $DB_PASSWORD
 
 - name: worker
-  instances: 3
+  instances: 6
   vm_type: concourse_worker
   stemcell: trusty
   azs: [z1]
@@ -97,6 +97,6 @@ instance_groups:
 update:
   canaries: 1
   max_in_flight: 2
-  serial: true
-  canary_watch_time: 1000-60000
-  update_watch_time: 1000-60000
+  serial: false
+  canary_watch_time: 1000-180000
+  update_watch_time: 1000-180000
