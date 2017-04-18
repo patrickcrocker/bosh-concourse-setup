@@ -94,6 +94,7 @@ instance_groups:
       garden:
         listen_network: tcp
         listen_address: 0.0.0.0:7777
+        default_container_grace_time: 5m
 
 update:
   canaries: 1
