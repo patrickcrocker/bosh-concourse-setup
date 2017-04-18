@@ -123,6 +123,7 @@ jobs:
       db: *db
       cpi_job: aws_cpi
       max_threads: 10
+      enable_snapshots: true
       user_management:
         provider: local
         local:
