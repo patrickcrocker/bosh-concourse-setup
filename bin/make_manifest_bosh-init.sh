@@ -136,16 +136,20 @@ jobs:
       director_account: {user: hm, password: $BOSH_PASSWORD}
       resurrector_enabled: true
 
+    ntp: &ntp
+    - 0.amazon.pool.ntp.org
+    - 1.amazon.pool.ntp.org
+    - 2.amazon.pool.ntp.org
+    - 3.amazon.pool.ntp.org
+
+    agent: {mbus: "nats://nats:$BOSH_PASSWORD@10.0.0.6:4222"}
+
     aws: &aws
       access_key_id: $AWS_ACCESS_KEY_ID
       secret_access_key: $AWS_SECRET_ACCESS_KEY
       default_key_name: $AWS_KEYPAIR_KEY_NAME
       default_security_groups: [$SECURITY_GROUP]
       region: $AWS_REGION
-
-    agent: {mbus: "nats://nats:$BOSH_PASSWORD@10.0.0.6:4222"}
-
-    ntp: &ntp [0.pool.ntp.org, 1.pool.ntp.org]
 
 cloud_provider:
   template: {name: aws_cpi, release: bosh-aws-cpi}
