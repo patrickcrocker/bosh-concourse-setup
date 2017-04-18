@@ -31,7 +31,7 @@ vm_types:
     security_groups: [concourse-sg, boshdefault]
 - name: concourse_db
   cloud_properties:
-    instance_type: m3.medium
+    instance_type: c4.large
     ephemeral_disk: {size: 3_000, type: gp2}
     security_groups: [concourse-sg, boshdefault]
 - name: concourse_worker
@@ -50,8 +50,10 @@ disk_types:
   disk_size: 3000
   cloud_properties: {type: gp2}
 - name: large
-  disk_size: 50_000
-  cloud_properties: {type: gp2}
+  disk_size: 20_000
+  cloud_properties:
+    type: io1
+    iops: 1000
 
 networks:
 - name: default
