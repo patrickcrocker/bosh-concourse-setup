@@ -38,12 +38,12 @@ vm_types:
     security_groups: [concourse-sg, boshdefault]
 - name: concourse_worker
   cloud_properties:
-    instance_type: m4.large
+    instance_type: t2.medium
     ephemeral_disk: {size: 100_000, type: gp2}
     security_groups: [concourse-sg, boshdefault]
 - name: concourse_compile
   cloud_properties:
-    instance_type: m4.xlarge
+    instance_type: c4.large
     ephemeral_disk: {size: 10_000, type: gp2}
     security_groups: [boshdefault]
 
