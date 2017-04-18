@@ -81,7 +81,8 @@ instance_groups:
   jobs:
   - name: groundcrew
     release: concourse
-    properties: {}
+    properties:
+      drain_timeout: 60m
 
   - name: baggageclaim
     release: concourse
