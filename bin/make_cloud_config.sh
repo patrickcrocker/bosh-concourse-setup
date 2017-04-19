@@ -34,6 +34,7 @@ vm_types:
     instance_type: c4.large
     ephemeral_disk: {size: 3_000, type: gp2}
     security_groups: [concourse-sg, boshdefault]
+    auto_assign_public_ip: 'false'
 - name: concourse_worker
   cloud_properties:
     instance_type: t2.medium
